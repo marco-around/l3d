@@ -1,0 +1,36 @@
+{
+	"name": "l3d",
+	"description": "A full-stack financial ledger project",
+	"author": "marco-around",
+	"license": "MIT",
+	"private": true,
+	"keywords": [
+		"nestjs",
+		"react",
+		"vite",
+		"tanstack-query",
+		"biome",
+		"rabbitmq",
+		"financial-ledger",
+		"ledger",
+		"finance",
+		"monorepo",
+		"turborepo"
+	],
+	"scripts": {
+		"build": "turbo run build",
+		"start:dev": "turbo run start:dev",
+		"lint": "biome check .",
+		"lint:fix": "biome check . --write",
+		"check-types": "turbo run check-types"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "2.5.1",
+		"turbo": "^2.10.2",
+		"typescript": "5.9.2"
+	},
+	"packageManager": "pnpm@9.15.9",
+	"engines": {
+		"node": ">=18"
+	}
+}

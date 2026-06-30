@@ -1,0 +1,7 @@
+{
+	"extends": "@l3d/typescript-config/nestjs.json",
+	"compilerOptions": {
+		"outDir": "./dist",
+		"baseUrl": "./"
+	}
+}

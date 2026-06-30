@@ -1,0 +1,15 @@
+packages:
+  - "apps/*"
+  - "packages/*"
+
+catalog:
+  "@types/node": ^24.13.2
+  globals: ^17.7.0
+
+catalogs:
+  api:
+    typescript: 5.9.2
+  web:
+    typescript: ~6.0.2
+    react: ^19.2.7
+    react-dom: ^19.2.7
