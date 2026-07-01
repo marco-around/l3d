@@ -10,8 +10,10 @@
 		"check-types": "tsc -b"
 	},
 	"dependencies": {
+		"@tailwindcss/vite": "^4.3.2",
 		"react": "catalog:web",
-		"react-dom": "catalog:web"
+		"react-dom": "catalog:web",
+		"tailwindcss": "^4.3.2"
 	},
 	"devDependencies": {
 		"@l3d/typescript-config": "workspace:*",
