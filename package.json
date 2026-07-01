@@ -22,10 +22,15 @@
 		"start:dev": "turbo run start:dev",
 		"lint": "biome check .",
 		"lint:fix": "biome check . --write",
-		"check-types": "turbo run check-types"
+		"typecheck": "turbo run typecheck",
+		"prepare": "lefthook install"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "2.5.1",
+		"@commitlint/cli": "^21.2.0",
+		"@commitlint/config-conventional": "^21.2.0",
+		"@commitlint/types": "^21.2.0",
+		"lefthook": "^2.1.9",
 		"turbo": "^2.10.2",
 		"typescript": "5.9.2"
 	},
