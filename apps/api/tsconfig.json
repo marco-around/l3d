@@ -1,7 +1,12 @@
 {
-	"extends": "@l3d/typescript-config/nestjs.json",
-	"compilerOptions": {
-		"outDir": "./dist",
-		"baseUrl": "./"
-	}
+  "extends": "@l3d/typescript-config/nestjs.json",
+  "compilerOptions": {
+    "outDir": "./dist",
+    "baseUrl": "./",
+    "types": ["node", "vitest/globals"],
+    "paths": {
+      "@src/*": ["./src/*"],
+      "@test/*": ["./test/*"],
+    },
+  },
 }
