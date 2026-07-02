@@ -9,6 +9,9 @@ coverage
 .temp
 .tmp
 
+# Prisma
+packages/database/generated
+
 # Turbo
 .turbo
 
