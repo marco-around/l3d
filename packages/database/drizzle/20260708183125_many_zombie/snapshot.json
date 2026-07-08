@@ -1,0 +1,454 @@
+{
+	"version": "8",
+	"dialect": "postgres",
+	"id": "07a611b8-c85e-414a-a454-ad72a01eae05",
+	"prevIds": ["00000000-0000-0000-0000-000000000000"],
+	"ddl": [
+		{
+			"values": ["CREATE", "UPDATE", "DELETE", "READ"],
+			"name": "audit_action",
+			"entityType": "enums",
+			"schema": "public"
+		},
+		{
+			"values": ["ADMIN", "ANALYST"],
+			"name": "user_role",
+			"entityType": "enums",
+			"schema": "public"
+		},
+		{
+			"isRlsEnabled": false,
+			"name": "audit_logs",
+			"entityType": "tables",
+			"schema": "public"
+		},
+		{
+			"isRlsEnabled": false,
+			"name": "tenants",
+			"entityType": "tables",
+			"schema": "public"
+		},
+		{
+			"isRlsEnabled": false,
+			"name": "users",
+			"entityType": "tables",
+			"schema": "public"
+		},
+		{
+			"type": "uuid",
+			"typeSchema": null,
+			"notNull": true,
+			"dimensions": 0,
+			"default": "uuidv7()",
+			"generated": null,
+			"identity": null,
+			"name": "id",
+			"entityType": "columns",
+			"schema": "public",
+			"table": "audit_logs"
+		},
+		{
+			"type": "uuid",
+			"typeSchema": null,
+			"notNull": true,
+			"dimensions": 0,
+			"default": null,
+			"generated": null,
+			"identity": null,
+			"name": "tenant_id",
+			"entityType": "columns",
+			"schema": "public",
+			"table": "audit_logs"
+		},
+		{
+			"type": "uuid",
+			"typeSchema": null,
+			"notNull": true,
+			"dimensions": 0,
+			"default": null,
+			"generated": null,
+			"identity": null,
+			"name": "user_id",
+			"entityType": "columns",
+			"schema": "public",
+			"table": "audit_logs"
+		},
+		{
+			"type": "audit_action",
+			"typeSchema": "public",
+			"notNull": true,
+			"dimensions": 0,
+			"default": null,
+			"generated": null,
+			"identity": null,
+			"name": "action",
+			"entityType": "columns",
+			"schema": "public",
+			"table": "audit_logs"
+		},
+		{
+			"type": "jsonb",
+			"typeSchema": null,
+			"notNull": false,
+			"dimensions": 0,
+			"default": null,
+			"generated": null,
+			"identity": null,
+			"name": "metadata",
+			"entityType": "columns",
+			"schema": "public",
+			"table": "audit_logs"
+		},
+		{
+			"type": "timestamp with time zone",
+			"typeSchema": null,
+			"notNull": true,
+			"dimensions": 0,
+			"default": "now()",
+			"generated": null,
+			"identity": null,
+			"name": "created_at",
+			"entityType": "columns",
+			"schema": "public",
+			"table": "audit_logs"
+		},
+		{
+			"type": "uuid",
+			"typeSchema": null,
+			"notNull": true,
+			"dimensions": 0,
+			"default": "uuidv7()",
+			"generated": null,
+			"identity": null,
+			"name": "id",
+			"entityType": "columns",
+			"schema": "public",
+			"table": "tenants"
+		},
+		{
+			"type": "text",
+			"typeSchema": null,
+			"notNull": true,
+			"dimensions": 0,
+			"default": null,
+			"generated": null,
+			"identity": null,
+			"name": "name",
+			"entityType": "columns",
+			"schema": "public",
+			"table": "tenants"
+		},
+		{
+			"type": "text",
+			"typeSchema": null,
+			"notNull": true,
+			"dimensions": 0,
+			"default": null,
+			"generated": null,
+			"identity": null,
+			"name": "slug",
+			"entityType": "columns",
+			"schema": "public",
+			"table": "tenants"
+		},
+		{
+			"type": "timestamp with time zone",
+			"typeSchema": null,
+			"notNull": false,
+			"dimensions": 0,
+			"default": null,
+			"generated": null,
+			"identity": null,
+			"name": "deleted_at",
+			"entityType": "columns",
+			"schema": "public",
+			"table": "tenants"
+		},
+		{
+			"type": "timestamp with time zone",
+			"typeSchema": null,
+			"notNull": true,
+			"dimensions": 0,
+			"default": "now()",
+			"generated": null,
+			"identity": null,
+			"name": "created_at",
+			"entityType": "columns",
+			"schema": "public",
+			"table": "tenants"
+		},
+		{
+			"type": "timestamp with time zone",
+			"typeSchema": null,
+			"notNull": true,
+			"dimensions": 0,
+			"default": "now()",
+			"generated": null,
+			"identity": null,
+			"name": "updated_at",
+			"entityType": "columns",
+			"schema": "public",
+			"table": "tenants"
+		},
+		{
+			"type": "uuid",
+			"typeSchema": null,
+			"notNull": true,
+			"dimensions": 0,
+			"default": "uuidv7()",
+			"generated": null,
+			"identity": null,
+			"name": "id",
+			"entityType": "columns",
+			"schema": "public",
+			"table": "users"
+		},
+		{
+			"type": "uuid",
+			"typeSchema": null,
+			"notNull": true,
+			"dimensions": 0,
+			"default": null,
+			"generated": null,
+			"identity": null,
+			"name": "tenant_id",
+			"entityType": "columns",
+			"schema": "public",
+			"table": "users"
+		},
+		{
+			"type": "text",
+			"typeSchema": null,
+			"notNull": true,
+			"dimensions": 0,
+			"default": null,
+			"generated": null,
+			"identity": null,
+			"name": "name",
+			"entityType": "columns",
+			"schema": "public",
+			"table": "users"
+		},
+		{
+			"type": "text",
+			"typeSchema": null,
+			"notNull": true,
+			"dimensions": 0,
+			"default": null,
+			"generated": null,
+			"identity": null,
+			"name": "email",
+			"entityType": "columns",
+			"schema": "public",
+			"table": "users"
+		},
+		{
+			"type": "text",
+			"typeSchema": null,
+			"notNull": true,
+			"dimensions": 0,
+			"default": null,
+			"generated": null,
+			"identity": null,
+			"name": "password_hash",
+			"entityType": "columns",
+			"schema": "public",
+			"table": "users"
+		},
+		{
+			"type": "user_role",
+			"typeSchema": "public",
+			"notNull": true,
+			"dimensions": 0,
+			"default": "'ANALYST'",
+			"generated": null,
+			"identity": null,
+			"name": "role",
+			"entityType": "columns",
+			"schema": "public",
+			"table": "users"
+		},
+		{
+			"type": "timestamp with time zone",
+			"typeSchema": null,
+			"notNull": false,
+			"dimensions": 0,
+			"default": null,
+			"generated": null,
+			"identity": null,
+			"name": "deleted_at",
+			"entityType": "columns",
+			"schema": "public",
+			"table": "users"
+		},
+		{
+			"type": "timestamp with time zone",
+			"typeSchema": null,
+			"notNull": true,
+			"dimensions": 0,
+			"default": "now()",
+			"generated": null,
+			"identity": null,
+			"name": "created_at",
+			"entityType": "columns",
+			"schema": "public",
+			"table": "users"
+		},
+		{
+			"type": "timestamp with time zone",
+			"typeSchema": null,
+			"notNull": true,
+			"dimensions": 0,
+			"default": "now()",
+			"generated": null,
+			"identity": null,
+			"name": "updated_at",
+			"entityType": "columns",
+			"schema": "public",
+			"table": "users"
+		},
+		{
+			"nameExplicit": true,
+			"columns": [
+				{
+					"value": "tenant_id",
+					"isExpression": false,
+					"asc": true,
+					"nullsFirst": false,
+					"opclass": null
+				}
+			],
+			"isUnique": false,
+			"where": null,
+			"with": "",
+			"method": "btree",
+			"concurrently": false,
+			"name": "audit_logs_tenant_id_index",
+			"entityType": "indexes",
+			"schema": "public",
+			"table": "audit_logs"
+		},
+		{
+			"nameExplicit": true,
+			"columns": [
+				{
+					"value": "tenant_id",
+					"isExpression": false,
+					"asc": true,
+					"nullsFirst": false,
+					"opclass": null
+				},
+				{
+					"value": "email",
+					"isExpression": false,
+					"asc": true,
+					"nullsFirst": false,
+					"opclass": null
+				}
+			],
+			"isUnique": true,
+			"where": null,
+			"with": "",
+			"method": "btree",
+			"concurrently": false,
+			"name": "users_tenant_email_unique",
+			"entityType": "indexes",
+			"schema": "public",
+			"table": "users"
+		},
+		{
+			"nameExplicit": true,
+			"columns": [
+				{
+					"value": "tenant_id",
+					"isExpression": false,
+					"asc": true,
+					"nullsFirst": false,
+					"opclass": null
+				}
+			],
+			"isUnique": false,
+			"where": null,
+			"with": "",
+			"method": "btree",
+			"concurrently": false,
+			"name": "users_tenant_id_index",
+			"entityType": "indexes",
+			"schema": "public",
+			"table": "users"
+		},
+		{
+			"nameExplicit": false,
+			"columns": ["tenant_id"],
+			"schemaTo": "public",
+			"tableTo": "tenants",
+			"columnsTo": ["id"],
+			"onUpdate": "NO ACTION",
+			"onDelete": "NO ACTION",
+			"name": "audit_logs_tenant_id_tenants_id_fkey",
+			"entityType": "fks",
+			"schema": "public",
+			"table": "audit_logs"
+		},
+		{
+			"nameExplicit": false,
+			"columns": ["user_id"],
+			"schemaTo": "public",
+			"tableTo": "users",
+			"columnsTo": ["id"],
+			"onUpdate": "NO ACTION",
+			"onDelete": "NO ACTION",
+			"name": "audit_logs_user_id_users_id_fkey",
+			"entityType": "fks",
+			"schema": "public",
+			"table": "audit_logs"
+		},
+		{
+			"nameExplicit": false,
+			"columns": ["tenant_id"],
+			"schemaTo": "public",
+			"tableTo": "tenants",
+			"columnsTo": ["id"],
+			"onUpdate": "NO ACTION",
+			"onDelete": "NO ACTION",
+			"name": "users_tenant_id_tenants_id_fkey",
+			"entityType": "fks",
+			"schema": "public",
+			"table": "users"
+		},
+		{
+			"columns": ["id"],
+			"nameExplicit": false,
+			"name": "audit_logs_pkey",
+			"schema": "public",
+			"table": "audit_logs",
+			"entityType": "pks"
+		},
+		{
+			"columns": ["id"],
+			"nameExplicit": false,
+			"name": "tenants_pkey",
+			"schema": "public",
+			"table": "tenants",
+			"entityType": "pks"
+		},
+		{
+			"columns": ["id"],
+			"nameExplicit": false,
+			"name": "users_pkey",
+			"schema": "public",
+			"table": "users",
+			"entityType": "pks"
+		},
+		{
+			"nameExplicit": false,
+			"columns": ["slug"],
+			"nullsNotDistinct": false,
+			"name": "tenants_slug_key",
+			"schema": "public",
+			"table": "tenants",
+			"entityType": "uniques"
+		}
+	],
+	"renames": []
+}
