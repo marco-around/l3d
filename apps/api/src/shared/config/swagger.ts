@@ -22,10 +22,8 @@ export function setupDocumentation(app: INestApplication) {
 		apiReference({
 			withFastify: true,
 			theme: 'laserwave',
-			sources: [
-				{ url: '/openapi.json', title: 'API' },
-				{ url: '/api/auth/open-api/generate-schema', title: 'Auth' },
-			],
+			url: '/openapi.json',
+			title: 'API',
 		})
 	)
 }
