@@ -37,12 +37,14 @@ export const users = pgTable(
 		updatedAt: timestamp('updated_at', { withTimezone: true }).defaultNow().notNull(),
 	},
 	(table) => [
-		uniqueIndex('users_tenant_email_unique').on(table.tenantId, table.email),
+		uniqueIndex('users_tenant_email_unique')
+			.on(table.tenantId, table.email)
+			.where(sql`deleted_at IS NULL`),
 		index('users_tenant_id_index').on(table.tenantId),
 	]
 )
 
-export const auditActionEnum = pgEnum('audit_action', ['CREATE', 'UPDATE', 'DELETE', 'READ'])
+export const auditActionEnum = pgEnum('audit_action', ['CREATE', 'UPDATE', 'DELETE'])
 
 export const auditLogs = pgTable(
 	'audit_logs',
@@ -58,5 +60,31 @@ export const auditLogs = pgTable(
 		metadata: jsonb('metadata'),
 		createdAt: timestamp('created_at', { withTimezone: true }).defaultNow().notNull(),
 	},
-	(table) => [index('audit_logs_tenant_id_index').on(table.tenantId)]
+	(table) => [
+		index('audit_logs_tenant_id_index').on(table.tenantId),
+		index('audit_logs_user_id_index').on(table.userId),
+	]
+)
+
+export const sessions = pgTable(
+	'sessions',
+	{
+		id: uuid('id').primaryKey().notNull().default(sql`uuidv7()`),
+		tenantId: uuid('tenant_id')
+			.notNull()
+			.references(() => tenants.id),
+		userId: uuid('user_id')
+			.notNull()
+			.references(() => users.id),
+		tokenHash: text('token_hash').notNull().unique(),
+		userAgent: text('user_agent'),
+		ipAddress: text('ip_address'),
+		expiresAt: timestamp('expires_at', { withTimezone: true }).notNull(),
+		revokedAt: timestamp('revoked_at', { withTimezone: true }),
+		createdAt: timestamp('created_at', { withTimezone: true }).defaultNow().notNull(),
+	},
+	(table) => [
+		index('sessions_user_id_index').on(table.userId),
+		index('sessions_tenant_id_index').on(table.tenantId),
+	]
 )
