@@ -8,6 +8,10 @@ export const auth = betterAuth({
 		provider: 'pg',
 		schema,
 	}),
-	plugins: [openAPI()],
+	plugins: [
+		openAPI({
+			disableDefaultReference: true,
+		}),
+	],
 	emailAndPassword: { enabled: true },
 })

@@ -20,9 +20,12 @@ export function setupDocumentation(app: INestApplication) {
 	app.use(
 		'/reference',
 		apiReference({
-			url: '/openapi.json',
 			withFastify: true,
 			theme: 'laserwave',
+			sources: [
+				{ url: '/openapi.json', title: 'API' },
+				{ url: '/api/auth/open-api/generate-schema', title: 'Auth' },
+			],
 		})
 	)
 }
