@@ -1,5 +1,10 @@
 {
-	"extends": "@l3d/typescript-config/bundler.json",
-	"include": ["src", "drizzle.config.ts"],
-	"exclude": ["node_modules", "dist"]
+	"extends": "@l3d/typescript-config/base.json",
+	"compilerOptions": {
+		"module": "commonjs",
+		"moduleResolution": "node",
+		"declaration": true,
+		"declarationMap": true
+	},
+	"include": ["src", "drizzle.config.ts"]
 }

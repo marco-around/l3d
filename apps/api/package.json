@@ -1,7 +1,6 @@
 {
 	"name": "api",
 	"version": "0.0.1",
-	"description": "",
 	"author": "marco-around",
 	"private": true,
 	"license": "MIT",
@@ -19,11 +18,14 @@
 		"test:e2e": "vitest run --config ./vitest.config.e2e.ts"
 	},
 	"dependencies": {
+		"@l3d/database": "workspace:*",
 		"@nestjs/common": "^11.0.1",
 		"@nestjs/core": "^11.0.1",
 		"@nestjs/platform-fastify": "^11.1.27",
 		"@nestjs/swagger": "^11.4.5",
 		"@scalar/nestjs-api-reference": "^1.2.8",
+		"@thallesp/nestjs-better-auth": "^2.7.0",
+		"better-auth": "^1.6.23",
 		"reflect-metadata": "^0.2.2",
 		"rxjs": "^7.8.1"
 	},

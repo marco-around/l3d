@@ -3,11 +3,16 @@
 	"version": "0.0.0",
 	"private": true,
 	"description": "Shared database package for the l3d monorepo",
-	"type": "module",
+	"main": "./dist/index.js",
+	"types": "./dist/index.d.ts",
 	"exports": {
-		".": "./src/index.ts"
+		".": {
+			"types": "./dist/index.d.ts",
+			"default": "./dist/index.js"
+		}
 	},
 	"scripts": {
+		"build": "tsc -p tsconfig.build.json",
 		"db:generate": "drizzle-kit generate",
 		"db:migrate": "drizzle-kit migrate",
 		"db:push": "drizzle-kit push",
