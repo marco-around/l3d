@@ -1,5 +1,5 @@
 {
-	"extends": "@l3d/typescript-config/vite-react.json",
+	"extends": "@l3d/typescript-config/vite-app.json",
 	"compilerOptions": {
 		"tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
 		"types": ["vite/client"]

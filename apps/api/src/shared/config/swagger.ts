@@ -2,6 +2,7 @@ import type { INestApplication } from '@nestjs/common'
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger'
 
 import { apiReference } from '@scalar/nestjs-api-reference'
+import { cleanupOpenApiDoc } from 'nestjs-zod'
 
 export function setupDocumentation(app: INestApplication) {
 	const config = new DocumentBuilder()
@@ -10,7 +11,7 @@ export function setupDocumentation(app: INestApplication) {
 		.setVersion('0.0.0')
 		.build()
 
-	const documentFactory = () => SwaggerModule.createDocument(app, config)
+	const documentFactory = () => cleanupOpenApiDoc(SwaggerModule.createDocument(app, config))
 
 	SwaggerModule.setup('api', app, documentFactory, {
 		ui: false,

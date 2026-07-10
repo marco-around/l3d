@@ -1,12 +1,8 @@
 {
-	"extends": "@l3d/typescript-config/vite-react.json",
+	"extends": "@l3d/typescript-config/vite-node.json",
 	"compilerOptions": {
 		"tsBuildInfoFile": "./node_modules/.tmp/tsconfig.node.tsbuildinfo",
-		"lib": ["ES2023"],
-		"types": ["node"],
-		"module": "nodenext",
-		"moduleResolution": "nodenext",
-		"noEmit": true
+		"types": ["node"]
 	},
 	"include": ["vite.config.ts"]
 }
