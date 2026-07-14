@@ -2,8 +2,8 @@ import { Controller, Get, Param, Query } from '@nestjs/common'
 import { ApiNotFoundResponse, ApiOperation, ApiParam, ApiTags } from '@nestjs/swagger'
 import { ZodResponse } from 'nestjs-zod'
 import { AuditService } from './audit.service'
-import { AuditLogDto } from './dto/audit-log.dto'
-import { QueryAuditLogDto } from './dto/query-audit-log.dto'
+import { AuditLogDto } from './schemas/audit-log.schema'
+import { QueryAuditLogDto } from './schemas/query-audit-log.schema'
 
 @ApiTags('Audit')
 @Controller('audit')

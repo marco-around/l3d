@@ -6,9 +6,9 @@ const dateCodec = z.codec(z.iso.datetime(), z.date(), {
 	encode: (d) => d.toISOString(),
 })
 export const auditLogSchema = z.object({
-	id: z.uuid().describe('Unique ID of the audit log'),
-	tenantId: z.uuid().describe('ID of the tenant'),
-	userId: z.uuid().describe('ID of the user who performed the action'),
+	id: z.uuidv7().describe('Unique ID of the audit log'),
+	tenantId: z.uuidv7().describe('ID of the tenant'),
+	userId: z.uuidv7().describe('ID of the user who performed the action'),
 	action: z.enum(['CREATE', 'UPDATE', 'DELETE']).describe('Action performed'),
 	metadata: z.unknown().describe('Metadata about the action'),
 	createdAt: dateCodec.describe('Creation timestamp'),
