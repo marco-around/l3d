@@ -1,7 +1,12 @@
+import { ThemeProvider } from './components/theme-provider'
+import { ThemeToggle } from './components/theme-toggle'
+
 export function App() {
 	return (
-		<div className="min-h-screen flex text-2xl font-bold bg-zinc-800 text-zinc-200 items-center justify-center">
-			Hello
-		</div>
+		<ThemeProvider defaultTheme="dark" storageKey="l3d-theme">
+			<div className="min-h-screen flex items-center justify-center">
+				<ThemeToggle />
+			</div>
+		</ThemeProvider>
 	)
 }
