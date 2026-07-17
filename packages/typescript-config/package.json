@@ -6,7 +6,7 @@
 	"exports": {
 		"./base.json": "./base.json",
 		"./nestjs.json": "./nestjs.json",
-		"./vite-app.json": "./vite-react.json",
+		"./vite-app.json": "./vite-app.json",
 		"./vite-node.json": "./vite-node.json"
 	}
 }
