@@ -1,11 +1,21 @@
-import { Controller, Get, Param, Query } from '@nestjs/common'
-import { ApiNotFoundResponse, ApiOperation, ApiParam, ApiTags } from '@nestjs/swagger'
+import { Controller, Get, Param, Query, UseGuards } from '@nestjs/common'
+import {
+	ApiBearerAuth,
+	ApiNotFoundResponse,
+	ApiOperation,
+	ApiParam,
+	ApiTags,
+} from '@nestjs/swagger'
+import { TenantGuard } from '@src/modules/auth/guards/tenant.guard'
 import { ZodResponse } from 'nestjs-zod'
+import { CurrentTenant } from '../auth/decorators/current-tenant.decorator'
 import { AuditService } from './audit.service'
 import { AuditLogDto } from './schemas/audit-log.schema'
 import { QueryAuditLogDto } from './schemas/query-audit-log.schema'
 
 @ApiTags('Audit')
+@ApiBearerAuth()
+@UseGuards(TenantGuard)
 @Controller('audit')
 export class AuditController {
 	constructor(private auditService: AuditService) {}
@@ -13,8 +23,7 @@ export class AuditController {
 	@Get()
 	@ApiOperation({ summary: 'List all audit logs' })
 	@ZodResponse({ type: [AuditLogDto], status: 200 })
-	findAll(@Query() query: QueryAuditLogDto) {
-		const tenantId = 'TODO'
+	findAll(@CurrentTenant('id') tenantId: string, @Query() query: QueryAuditLogDto) {
 		return this.auditService.findAll(tenantId, query)
 	}
 
@@ -23,8 +32,7 @@ export class AuditController {
 	@ApiParam({ name: 'id', description: 'Unique ID of the audit log' })
 	@ZodResponse({ type: AuditLogDto, status: 200 })
 	@ApiNotFoundResponse({ description: 'Audit log not found' })
-	findOne(@Param('id') id: string) {
-		const tenantId = 'TODO'
+	findOne(@CurrentTenant('id') tenantId: string, @Param('id') id: string) {
 		return this.auditService.findOne(id, tenantId)
 	}
 }

@@ -10,4 +10,6 @@ export const queryAuditLogSchema = z
 	})
 	.partial()
 
+export interface QueryAuditLog extends z.infer<typeof queryAuditLogSchema> {}
+
 export class QueryAuditLogDto extends createZodDto(queryAuditLogSchema) {}

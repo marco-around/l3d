@@ -1,20 +1,24 @@
-import { and, desc, eq, schema } from '@l3d/database'
+import { and, auditLogs, desc, eq } from '@l3d/database'
 import { Inject, Injectable } from '@nestjs/common'
 import { DRIZZLE_CONNECTION, type DrizzleDb } from '@src/shared/database/database.constants'
-import { CreateAuditLogDto } from './schemas/create-audit-log.schema'
-import { QueryAuditLogDto } from './schemas/query-audit-log.schema'
+import { CreateAudit } from './schemas/create-audit-log.schema'
+import { QueryAuditLog } from './schemas/query-audit-log.schema'
 
 @Injectable()
 export class AuditRepository {
 	constructor(@Inject(DRIZZLE_CONNECTION) private db: DrizzleDb) {}
 
-	async log(payload: CreateAuditLogDto) {
+	async log(payload: CreateAudit) {
 		const [entry] = await this.db
-			.insert(schema.auditLogs)
+			.insert(auditLogs)
 			.values({
 				userId: payload.userId,
 				tenantId: payload.tenantId,
 				action: payload.action,
+				entity: payload.entity,
+				entityId: payload.entityId,
+				ipAddress: payload.ipAddress,
+				userAgent: payload.userAgent,
 				metadata: payload.metadata,
 			})
 			.returning()
@@ -22,22 +26,22 @@ export class AuditRepository {
 		return entry
 	}
 
-	async findAll(tenantId: string, query: QueryAuditLogDto) {
-		const conditions = [eq(schema.auditLogs.tenantId, tenantId)]
+	async findAll(tenantId: string, query: QueryAuditLog) {
+		const conditions = [eq(auditLogs.tenantId, tenantId)]
 
 		if (query.action) {
-			conditions.push(eq(schema.auditLogs.action, query.action))
+			conditions.push(eq(auditLogs.action, query.action))
 		}
 
 		if (query.userId) {
-			conditions.push(eq(schema.auditLogs.userId, query.userId))
+			conditions.push(eq(auditLogs.userId, query.userId))
 		}
 
 		return await this.db
 			.select()
-			.from(schema.auditLogs)
+			.from(auditLogs)
 			.where(and(...conditions))
-			.orderBy(desc(schema.auditLogs.createdAt))
+			.orderBy(desc(auditLogs.createdAt))
 			.limit(query.limit ?? 50)
 			.offset(query.offset ?? 0)
 	}
@@ -45,8 +49,8 @@ export class AuditRepository {
 	async findOne(id: string, tenantId: string) {
 		const [entry] = await this.db
 			.select()
-			.from(schema.auditLogs)
-			.where(and(eq(schema.auditLogs.id, id), eq(schema.auditLogs.tenantId, tenantId)))
+			.from(auditLogs)
+			.where(and(eq(auditLogs.id, id), eq(auditLogs.tenantId, tenantId)))
 
 		return entry
 	}

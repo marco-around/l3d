@@ -18,15 +18,23 @@
 		"test:e2e": "vitest run --config ./vitest.config.e2e.ts"
 	},
 	"dependencies": {
+		"@fastify/cookie": "^11.1.1",
+		"@fastify/session": "^11.1.1",
 		"@l3d/database": "workspace:*",
 		"@nestjs/common": "^11.0.1",
 		"@nestjs/core": "^11.0.1",
-		"@nestjs/platform-fastify": "^11.1.27",
+		"@nestjs/platform-fastify": "^11.1.28",
 		"@nestjs/swagger": "^11.4.5",
 		"@scalar/nestjs-api-reference": "^1.2.9",
+		"argon2": "^0.44.0",
+		"connect-redis": "^8.0.0",
+		"dotenv": "^16.6.1",
+		"fastify": "^5.10.0",
+		"ioredis": "^5.11.1",
 		"nestjs-zod": "^5.4.0",
 		"reflect-metadata": "^0.2.2",
 		"rxjs": "^7.8.1",
+		"slugify": "^1.6.9",
 		"zod": "^4.4.3"
 	},
 	"devDependencies": {
