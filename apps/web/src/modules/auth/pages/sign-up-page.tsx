@@ -1,4 +1,5 @@
 import { GoogleLogoIcon } from '@phosphor-icons/react'
+import { Link } from 'react-router'
 import { Button } from '@/shared/components/ui/button'
 import {
 	Field,
@@ -32,13 +33,23 @@ export function SignUpPage() {
 					<Input id="email" type="email" placeholder="m@example.com" required />
 				</Field>
 
+				<Field>
+					<FieldLabel htmlFor="password">Password</FieldLabel>
+					<Input id="password" type="password" required />
+				</Field>
+
+				<Field>
+					<FieldLabel htmlFor="confirm-password">Confirm Password</FieldLabel>
+					<Input id="confirm-password" type="password" required />
+				</Field>
+
 				<Button type="submit">Create Account</Button>
 
 				<FieldDescription className="text-center">
 					Have account?{' '}
-					<a href="/" className="underline underline-offset-4">
+					<Link to="/" className="underline underline-offset-4">
 						Sign in
-					</a>
+					</Link>
 				</FieldDescription>
 			</FieldGroup>
 		</form>
